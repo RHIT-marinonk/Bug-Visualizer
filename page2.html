@@ -25,10 +25,8 @@
     const checkboxState =
       localStorage.getItem("checkboxState") === "true";
 
-    // Start with the same state as Page 1
     box2.checked = checkboxState;
 
-    // ONLY start flickering if checkboxState is true
     if (checkboxState) {
       localStorage.setItem("visitedPage2", "true");
       flickerInterval = setInterval(function () {
