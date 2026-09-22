@@ -22,9 +22,6 @@
   <script>
     const box2 = document.getElementById("box2");
 
-    // Mark that Page 2 has been entered
-    localStorage.setItem("visitedPage2", "true");
-
     const checkboxState =
       localStorage.getItem("checkboxState") === "true";
 
@@ -33,6 +30,7 @@
 
     // ONLY start flickering if checkboxState is true
     if (checkboxState) {
+      localStorage.setItem("visitedPage2", "true");
       flickerInterval = setInterval(function () {
         box2.checked = !box2.checked;
       }, 250);
