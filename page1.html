@@ -19,15 +19,50 @@
 
   <a href="page2.html">Go to Page 2</a>
 
+  <br><br>
+
+  <button id="resetButton">Reset Flickering</button>
+
   <script>
     const box1 = document.getElementById("box1");
+    const resetButton = document.getElementById("resetButton");
 
-    // Restore the checkbox state
+    let flickerInterval = null;
+
+    // Restore the saved checkbox state
     box1.checked = localStorage.getItem("checkboxState") === "true";
 
-    // Save the checkbox state whenever it changes
+    // Check if Page 2 has been visited
+    const visitedPage2 =
+      localStorage.getItem("visitedPage2") === "true";
+
+    // Start flickering if Page 2 has been visited
+    if (visitedPage2) {
+      flickerInterval = setInterval(function () {
+        box1.checked = !box1.checked;
+      }, 250);
+    }
+
+    // Save manually changed checkbox state
     box1.addEventListener("change", function () {
       localStorage.setItem("checkboxState", box1.checked);
+    });
+
+    // Reset everything
+    resetButton.addEventListener("click", function () {
+
+      // Stop the flickering
+      if (flickerInterval !== null) {
+        clearInterval(flickerInterval);
+        flickerInterval = null;
+      }
+
+      // Clear saved data
+      localStorage.removeItem("visitedPage2");
+      localStorage.removeItem("checkboxState");
+
+      // Uncheck the box
+      box1.checked = false;
     });
   </script>
 
