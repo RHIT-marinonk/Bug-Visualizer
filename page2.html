@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page 2</title>
+</head>
+
+<body>
+
+  <h1>Page 2</h1>
+
+  <label>
+    <input type="checkbox" id="box2">
+    Checkbox 2
+  </label>
+
+  <br><br>
+
+  <a href="page1.html">Back to Page 1</a>
+
+  <script>
+    const box2 = document.getElementById("box2");
+
+    // Start with the state from Page 1
+    box2.checked = localStorage.getItem("checkboxState") === "true";
+
+    // Automatically flip between checked and unchecked
+    setInterval(function () {
+      box2.checked = !box2.checked;
+    }, 250);
+  </script>
+
+</body>
+</html>
