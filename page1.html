@@ -22,20 +22,16 @@
   <script>
     const box1 = document.getElementById("box1");
 
-    // Restore the checkbox state
     box1.checked = localStorage.getItem("checkboxState") === "true";
 
-    // Check whether Page 2 has ever been visited
     const visitedPage2 = localStorage.getItem("visitedPage2") === "true";
 
-    // If Page 2 has been visited, start continuously toggling
     if (visitedPage2) {
       setInterval(function () {
         box1.checked = !box1.checked;
       }, 250);
     }
 
-    // Save the state when the checkbox is manually changed
     box1.addEventListener("change", function () {
       localStorage.setItem("checkboxState", box1.checked);
     });
